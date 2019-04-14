@@ -1,0 +1,16 @@
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Release\Properties\Resources.resx
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Release\Properties\Resources.Designer.cs
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Release\MyDiary.exe.config
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Release\MyDiary.exe
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Release\MyDiary.pdb
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MainWindow.g.cs
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\App.g.cs
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary_MarkupCompile.cache
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary_MarkupCompile.lref
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MainWindow.baml
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.g.resources
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.Properties.Resources.resources
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.csproj.GenerateResource.cache
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.csproj.CoreCompileInputs.cache
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.exe
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.pdb

@@ -1,0 +1,31 @@
+﻿<Window x:Name="MyDiary" x:Class="MyDiary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyDiary"
+        mc:Ignorable="d"
+        Title="MyDiary" Height="135" Width="665" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="MyDiary_Loaded" Foreground="{x:Null}" Icon="Image/MyDiary.ico" AllowsTransparency="True" WindowStyle="None">
+    <Window.Background>
+        <SolidColorBrush Color="#FF4C8CB8"/>
+    </Window.Background>
+    <Grid x:Name="MainGrid" Margin="10">
+        <Grid x:Name="NewGrid" Margin="0,0,31,0" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+            <Label Content="NOW:" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Height="45" Width="90" FontSize="22" VerticalContentAlignment="Center" FontFamily="Microsoft YaHei UI Light" Foreground="White"/>
+            <Label x:Name="Label_time" Content="TIME" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Width="280" Height="45" VerticalContentAlignment="Center" FontSize="22" FontFamily="Microsoft YaHei UI Light" Foreground="White"/>
+            <TextBox x:Name="diaryBox" Height="40" Margin="30,62,0,0" TextWrapping="Wrap" Text="Something" VerticalAlignment="Top" FontFamily="Microsoft YaHei Light" FontSize="22" VerticalContentAlignment="Center" GotFocus="DiaryBox_GotFocus" LostFocus="DiaryBox_LostFocus" Foreground="White" KeyDown="DiaryBox_KeyDown" BorderBrush="{x:Null}" SelectionBrush="{x:Null}">
+                <TextBox.Background>
+                    <SolidColorBrush Color="White" Opacity="0.3"/>
+                </TextBox.Background>
+            </TextBox>
+            <Label x:Name="Label_emotion" Content="Happy" HorizontalAlignment="Left" Margin="522,10,0,0" VerticalAlignment="Top" Height="45" Width="90" FontSize="22" VerticalContentAlignment="Center" RenderTransformOrigin="5.922,0.678" HorizontalContentAlignment="Center" FontFamily="Microsoft YaHei UI Light" Foreground="White" Focusable="True"/>
+            <Image x:Name="image_happy" HorizontalAlignment="Left" Height="35" Margin="360,16,0,0" VerticalAlignment="Top" Width="35" Source="Image/sunny.png" MouseLeftButtonDown="Image_happy_MouseLeftButtonDown" Focusable="True"/>
+            <Image x:Name="image_sad" HorizontalAlignment="Left" Height="35" Margin="422,18,0,0" VerticalAlignment="Top" Width="35" Source="Image/rainy.png" MouseLeftButtonDown="Image_sad_MouseLeftButtonDown" Focusable="True"/>
+            <Image x:Name="image_angry" HorizontalAlignment="Left" Height="35" Margin="490,16,0,0" VerticalAlignment="Top" Width="35" Source="Image/lightning.png" MouseLeftButtonDown="Image_angry_MouseLeftButtonDown" Focusable="True"/>
+        </Grid>
+        <Label x:Name="Label_close" Content="×" HorizontalAlignment="Left" Margin="614,-14,0,0" VerticalAlignment="Top" Foreground="White" Width="40" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="OCR A Extended" MouseLeftButtonDown="Label_close_MouseLeftButtonDown" Padding="0" FontSize="22" MouseEnter="Label_close_MouseEnter" MouseLeave="Label_close_MouseLeave" AutomationProperties.HelpText="Exit" ToolTip="Exit"/>
+        <Label x:Name="Label_open" Content="o" HorizontalAlignment="Left" Margin="-12,-14,0,0" VerticalAlignment="Top" Foreground="White" Width="40" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="OCR A Extended" Padding="0" MouseEnter="Label_open_MouseEnter" MouseLeave="Label_open_MouseLeave" MouseLeftButtonDown="Label_open_MouseLeftButtonDown" FontSize="16" AutomationProperties.HelpText="Open Diary" ToolTip="Open Diary"/>
+        <Label x:Name="Label_change" Content="c" HorizontalAlignment="Left" Margin="614,88,-9,0" Foreground="White" Width="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="OCR A Extended" Padding="0" FontSize="18" Height="40" VerticalAlignment="Top" MouseEnter="Label_change_MouseEnter" MouseLeave="Label_change_MouseLeave" MouseLeftButtonDown="Label_change_MouseLeftButtonDown" AutomationProperties.HelpText="Change Color" ToolTip="Change Color"/>
+        <Label x:Name="Label_help" Content="?" HorizontalAlignment="Left" Margin="-14,88,0,0" VerticalAlignment="Top" Foreground="White" Width="40" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="OCR A Extended" Padding="0" FontSize="16" MouseEnter="Label_help_MouseEnter" MouseLeave="Label_help_MouseLeave" MouseLeftButtonDown="Label_help_MouseLeftButtonDown" AutomationProperties.HelpText="Help" ToolTip="Help"/>
+    </Grid>
+</Window>
