@@ -81,7 +81,7 @@ namespace MyDiary
                 record += color;
                 record += "\t\t";
                 record += this.diaryBox.Text;
-                record += "\n";
+                record += "\r\n";
 
                 byte[] data = new UTF8Encoding().GetBytes(record);
                 //开始写入
@@ -141,6 +141,15 @@ namespace MyDiary
                 MessageBox.Show("请使用管理员权限打开本应用。");
                 Application.Current.Shutdown();
             }
+
+            string path = System.IO.Path.GetDirectoryName(filepath);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                FileStream fs = new FileStream(filepath, FileMode.Append);
+                fs.Close();            
+            }
+
         }
 
         private void DiaryBox_GotFocus(object sender, RoutedEventArgs e)
@@ -360,6 +369,7 @@ namespace MyDiary
             }
             else if(win_id == 1)
             {
+                this.PwBox.Focus();
                 win_now = 1;
                 Grid_ui.IsEnabled = false;
                 Grid_ui.Visibility = Visibility.Hidden;
