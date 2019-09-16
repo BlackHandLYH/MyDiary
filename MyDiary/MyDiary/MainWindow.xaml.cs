@@ -14,10 +14,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 using Microsoft.Win32;
 
 namespace MyDiary
 {
+    public class DiaryModel
+    {
+        public DiaryModel()
+        {  }
+
+        public string Emotion;
+        public string Color;
+        public string Date;
+        public string Time;
+        public string Weekday;
+        public string Diary;
+    }
+
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
@@ -25,8 +39,9 @@ namespace MyDiary
     {
         public string original_text = "记录这一刻吧...";
         public string record_text = "";
-        public string filepath = "D:/MyDiary/diary.txt"; 
+        public string filepath = "D:/MyDiary/diary.xml";
         public string pword = "123456";
+        public List<DiaryModel> diaryList;
         int emotion = 0;  //0-happy 1-sad 2-angry
         int win_now = 0;
         int R, G, B;
@@ -58,6 +73,43 @@ namespace MyDiary
             }
             else
             {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filepath);
+                XmlNode root = doc.SelectSingleNode("MyDiary");
+
+                XmlElement xelKey = doc.CreateElement("Record");
+
+                XmlAttribute xaEmotion = doc.CreateAttribute("Emotion");
+                xaEmotion.InnerText = this.Label_emotion.Content.ToString();
+                xelKey.SetAttributeNode(xaEmotion);
+
+                XmlAttribute xaColor = doc.CreateAttribute("Color");
+                xaColor.InnerText = R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
+                xelKey.SetAttributeNode(xaColor);
+
+                XmlAttribute xaDate = doc.CreateAttribute("Date");
+                xaDate.InnerText = DateTime.Now.ToString("yyyy-MM-dd");
+                xelKey.SetAttributeNode(xaDate);
+
+                XmlAttribute xaTime = doc.CreateAttribute("Time");
+                xaTime.InnerText = DateTime.Now.Hour.ToString("D2") + ":" + DateTime.Now.Minute.ToString("D2");
+                xelKey.SetAttributeNode(xaTime);
+
+                XmlAttribute xaWeekday = doc.CreateAttribute("Weekday");
+                xaWeekday.InnerText = DateTime.Now.DayOfWeek.ToString();
+                xelKey.SetAttributeNode(xaWeekday);
+
+                XmlAttribute xaDiary = doc.CreateAttribute("Diary");
+                xaDiary.InnerText = this.diaryBox.Text;
+                xelKey.SetAttributeNode(xaDiary);
+
+                root.AppendChild(xelKey);
+
+                doc.Save(filepath);
+
+
+                #region
+                /*
                 FileStream fs = new FileStream(filepath, FileMode.Append);
                 string record = "";
                 string color = "#" + R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
@@ -89,6 +141,9 @@ namespace MyDiary
                 //清空缓冲区、关闭流
                 fs.Flush();
                 fs.Close();
+                */
+                #endregion
+
 
                 MessageBox.Show("你已经记录下这一刻。 :)");
                 this.diaryBox.Text = original_text;
@@ -269,6 +324,61 @@ namespace MyDiary
         {
             Colorit();
         }
+        private void Label_random_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Label_random.FontSize = 24;
+        }
+
+        private void Label_random_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Label_random.FontSize = 18;
+        }
+
+        private void Label_random_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Random rd = new Random();
+            int count = diaryList.Count();
+            int now = rd.Next(0, count - 1);
+            DiaryModel diary = diaryList[now];
+
+            Label_ViewerContent.Content = diary.Diary;
+
+            R = int.Parse(diary.Color.Substring(0, 2));
+            G = int.Parse(diary.Color.Substring(2, 2));
+            B = int.Parse(diary.Color.Substring(4, 2));
+            byte[] color_R = BitConverter.GetBytes(R);
+            byte[] color_G = BitConverter.GetBytes(G);
+            byte[] color_B = BitConverter.GetBytes(B);
+            Color color = Color.FromRgb(color_R[0], color_G[0], color_B[0]);
+            SolidColorBrush myBrush = new SolidColorBrush(color);
+            this.MyDiary.Background = myBrush;
+        }
+
+        public void loadDiary()
+        {
+            string str = "<MyDiary><Record Emotion=\"Happy\" Color=\"555555\" Date=\"2019-09-16\" Time=\"19:26\" Weekday=\"Monday\" Diary=\"Test\"/></MyDiary>";
+            diaryList = new List<DiaryModel>();
+
+            XmlDocument doc = new XmlDocument();
+
+            doc.Load(filepath);
+
+            XmlNode xn = doc.SelectSingleNode("MyDiary");
+            XmlNodeList xnl = xn.ChildNodes;
+
+            foreach (XmlNode node in xnl)
+            {
+                DiaryModel diary = new DiaryModel();
+                XmlElement xe = (XmlElement)node;
+                diary.Emotion = xe.GetAttribute("Emotion").ToString();
+                diary.Color = xe.GetAttribute("Color").ToString();
+                diary.Date = xe.GetAttribute("Date").ToString();
+                diary.Time = xe.GetAttribute("Time").ToString();
+                diary.Weekday = xe.GetAttribute("Weekday").ToString();
+                diary.Diary = xe.GetAttribute("Diary").ToString();
+                diaryList.Add(diary);
+            }
+        }
 
         private void Label_help_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -296,6 +406,9 @@ namespace MyDiary
                 case 3:
                     WinChange(2);
                     break;
+                case 4:
+                    WinChange(2);
+                    break;
                 default:
                     WinChange(0);
                     break;
@@ -308,8 +421,9 @@ namespace MyDiary
             {
                 if(PwBox.Password == pword)
                 {
-                    WinChange(0);
-                    System.Diagnostics.Process.Start(filepath);
+                    WinChange(4);
+                    Label_open.Content = "←";
+                    Label_open.ToolTip = "Back";
                 }
                 else
                 {
@@ -330,15 +444,23 @@ namespace MyDiary
             {
                 case 0:
                     WinChange(1);
+                    PwBox.Focus();
                     break;
                 case 1:
                     WinChange(0);
                     break;
                 case 2:
                     WinChange(1);
+                    PwBox.Focus();
                     break;
                 case 3:
                     WinChange(1);
+                    PwBox.Focus();
+                    break;
+                case 4:
+                    Label_open.Content = "o";
+                    Label_open.ToolTip = "Open Diary";
+                    WinChange(0);
                     break;
                 default:
                     WinChange(0);
@@ -349,7 +471,7 @@ namespace MyDiary
         /// <summary>
         /// 选择当前有效窗口
         /// </summary>
-        /// <param name="win_id">0-ui 1-pw 2-help</param>
+        /// <param name="win_id">0-ui 1-pw 2-help 3-changepw 4-viewer</param>
         public void WinChange(int win_id)
         {
             PwBox.Password = "";
@@ -366,6 +488,12 @@ namespace MyDiary
                 Grid_help.Visibility = Visibility.Hidden;
                 Grid_changepw.IsEnabled = false;
                 Grid_changepw.Visibility = Visibility.Hidden;
+                Grid_viewer.IsEnabled = false;
+                Grid_viewer.Visibility = Visibility.Hidden;
+                Label_change.IsEnabled = true;
+                Label_change.Visibility = Visibility.Visible;
+                Label_random.IsEnabled = false;
+                Label_random.Visibility = Visibility.Hidden;
             }
             else if(win_id == 1)
             {
@@ -379,6 +507,12 @@ namespace MyDiary
                 Grid_help.Visibility = Visibility.Hidden;
                 Grid_changepw.IsEnabled = false;
                 Grid_changepw.Visibility = Visibility.Hidden;
+                Grid_viewer.IsEnabled = false;
+                Grid_viewer.Visibility = Visibility.Hidden;
+                Label_change.IsEnabled = true;
+                Label_change.Visibility = Visibility.Visible;
+                Label_random.IsEnabled = false;
+                Label_random.Visibility = Visibility.Hidden;
             }
             else if(win_id == 2)
             {
@@ -391,6 +525,12 @@ namespace MyDiary
                 Grid_help.Visibility = Visibility.Visible;
                 Grid_changepw.IsEnabled = false;
                 Grid_changepw.Visibility = Visibility.Hidden;
+                Grid_viewer.IsEnabled = false;
+                Grid_viewer.Visibility = Visibility.Hidden;
+                Label_change.IsEnabled = true;
+                Label_change.Visibility = Visibility.Visible;
+                Label_random.IsEnabled = false;
+                Label_random.Visibility = Visibility.Hidden;
             }
             else if(win_id == 3)
             {
@@ -403,6 +543,31 @@ namespace MyDiary
                 Grid_help.Visibility = Visibility.Hidden;
                 Grid_changepw.IsEnabled = true;
                 Grid_changepw.Visibility = Visibility.Visible;
+                Grid_viewer.IsEnabled = false;
+                Grid_viewer.Visibility = Visibility.Hidden;
+                Label_change.IsEnabled = true;
+                Label_change.Visibility = Visibility.Visible;
+                Label_random.IsEnabled = false;
+                Label_random.Visibility = Visibility.Hidden;
+            }
+            else if(win_id == 4)
+            {
+                win_now = 4;
+                loadDiary();
+                Grid_ui.IsEnabled = false;
+                Grid_ui.Visibility = Visibility.Hidden;
+                Grid_pw.IsEnabled = false;
+                Grid_pw.Visibility = Visibility.Hidden;
+                Grid_help.IsEnabled = false;
+                Grid_help.Visibility = Visibility.Hidden;
+                Grid_changepw.IsEnabled = false;
+                Grid_changepw.Visibility = Visibility.Hidden;
+                Grid_viewer.IsEnabled = true;
+                Grid_viewer.Visibility = Visibility.Visible;
+                Label_change.IsEnabled = false;
+                Label_change.Visibility = Visibility.Hidden;
+                Label_random.IsEnabled = true;
+                Label_random.Visibility = Visibility.Visible;
             }
         }
 
@@ -421,6 +586,9 @@ namespace MyDiary
                     break;
                 case 3:
                     WinChange(0);
+                    break;
+                case 4:
+                    WinChange(3);
                     break;
                 default:
                     WinChange(0);
@@ -488,6 +656,7 @@ namespace MyDiary
                 ChangePW();
             }
         }
+
 
         public bool IsExistRegValue(string path, string keyvalue)
         {
