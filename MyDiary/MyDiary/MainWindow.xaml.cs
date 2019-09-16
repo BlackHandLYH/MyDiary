@@ -341,11 +341,15 @@ namespace MyDiary
             int now = rd.Next(0, count - 1);
             DiaryModel diary = diaryList[now];
 
-            Label_ViewerContent.Content = diary.Diary;
+            diaryViewerBox.Text = diary.Diary;
 
-            R = int.Parse(diary.Color.Substring(0, 2));
-            G = int.Parse(diary.Color.Substring(2, 2));
-            B = int.Parse(diary.Color.Substring(4, 2));
+            Label_emotionviewer.Content = diary.Emotion;
+
+            Label_timeviewer.Content = diary.Date + " " + diary.Weekday + " " + diary.Time;
+
+            R = Convert.ToInt32(diary.Color.Substring(0, 2), 16);
+            G = Convert.ToInt32(diary.Color.Substring(2, 2), 16);
+            B = Convert.ToInt32(diary.Color.Substring(4, 2), 16);
             byte[] color_R = BitConverter.GetBytes(R);
             byte[] color_G = BitConverter.GetBytes(G);
             byte[] color_B = BitConverter.GetBytes(B);
@@ -422,8 +426,7 @@ namespace MyDiary
                 if(PwBox.Password == pword)
                 {
                     WinChange(4);
-                    Label_open.Content = "←";
-                    Label_open.ToolTip = "Back";
+                    
                 }
                 else
                 {
@@ -458,8 +461,6 @@ namespace MyDiary
                     PwBox.Focus();
                     break;
                 case 4:
-                    Label_open.Content = "o";
-                    Label_open.ToolTip = "Open Diary";
                     WinChange(0);
                     break;
                 default:
@@ -479,6 +480,8 @@ namespace MyDiary
             NewPwBox.Password = "";
             if (win_id == 0)
             {
+                Label_open.Content = "o";
+                Label_open.ToolTip = "Open Diary";
                 win_now = 0;
                 Grid_ui.IsEnabled = true;
                 Grid_ui.Visibility = Visibility.Visible;
@@ -497,6 +500,8 @@ namespace MyDiary
             }
             else if(win_id == 1)
             {
+                Label_open.Content = "o";
+                Label_open.ToolTip = "Open Diary";
                 this.PwBox.Focus();
                 win_now = 1;
                 Grid_ui.IsEnabled = false;
@@ -516,6 +521,8 @@ namespace MyDiary
             }
             else if(win_id == 2)
             {
+                Label_open.Content = "o";
+                Label_open.ToolTip = "Open Diary";
                 win_now = 2;
                 Grid_ui.IsEnabled = false;
                 Grid_ui.Visibility = Visibility.Hidden;
@@ -534,6 +541,8 @@ namespace MyDiary
             }
             else if(win_id == 3)
             {
+                Label_open.Content = "o";
+                Label_open.ToolTip = "Open Diary";
                 win_now = 3;
                 Grid_ui.IsEnabled = false;
                 Grid_ui.Visibility = Visibility.Hidden;
@@ -553,6 +562,8 @@ namespace MyDiary
             else if(win_id == 4)
             {
                 win_now = 4;
+                Label_open.Content = "←";
+                Label_open.ToolTip = "Back";
                 loadDiary();
                 Grid_ui.IsEnabled = false;
                 Grid_ui.Visibility = Visibility.Hidden;

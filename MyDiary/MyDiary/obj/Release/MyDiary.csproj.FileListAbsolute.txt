@@ -19,7 +19,6 @@ D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\bin\Release\Properties\Resources
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\bin\Release\MyDiary.exe.config
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\bin\Release\MyDiary.exe
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\bin\Release\MyDiary.pdb
-D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.csprojAssemblyReference.cache
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Release\MainWindow.g.cs
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Release\App.g.cs
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary_MarkupCompile.cache
