@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,12 +39,15 @@ namespace MyDiary
     {
         public string original_text = "记录这一刻吧...";
         public string record_text = "";
-        public string filepath = "D:/MyDiary/diary.xml";
+        public string Filepath { get; set; }
+        public const string respath = @"./m.resx";
         public string pword = "123456";
         public List<DiaryModel> diaryList;
         int emotion = 0;  //0-happy 1-sad 2-angry
         int win_now = 0;
-        int R, G, B;
+        int R { get; set; }
+        int G { get; set; }
+        int B { get; set; }
 
         public void UpdateEmotion()
         {
@@ -74,7 +77,7 @@ namespace MyDiary
             else
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(filepath);
+                doc.Load(Filepath);
                 XmlNode root = doc.SelectSingleNode("MyDiary");
 
                 XmlElement xelKey = doc.CreateElement("Record");
@@ -105,7 +108,7 @@ namespace MyDiary
 
                 root.AppendChild(xelKey);
 
-                doc.Save(filepath);
+                doc.Save(Filepath);
 
 
                 #region
@@ -187,6 +190,18 @@ namespace MyDiary
             help_msg += "×: 退出";
             Label_helptext.Content = help_msg;
 
+            System.Resources.ResXResourceReader rr = new System.Resources.ResXResourceReader(respath);
+            var dict = rr.GetEnumerator();
+            while (dict.MoveNext())
+            {
+                if (dict.Key.ToString() == "FILEPATH")
+                    Filepath = dict.Value.ToString();
+                if (dict.Key.ToString() == "PASSWORD")
+                    pword = dict.Value.ToString();
+            }
+            rr.Close();
+
+            /*
             try
             {
                 ManageReg();
@@ -196,14 +211,16 @@ namespace MyDiary
                 MessageBox.Show("请使用管理员权限打开本应用。");
                 Application.Current.Shutdown();
             }
+            */
 
-            string path = System.IO.Path.GetDirectoryName(filepath);
+            string path = System.IO.Path.GetDirectoryName(Filepath);
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
-                FileStream fs = new FileStream(filepath, FileMode.Append);
+                FileStream fs = new FileStream(Filepath, FileMode.Append);
                 fs.Close();            
             }
+            
 
         }
 
@@ -360,12 +377,11 @@ namespace MyDiary
 
         public void loadDiary()
         {
-            string str = "<MyDiary><Record Emotion=\"Happy\" Color=\"555555\" Date=\"2019-09-16\" Time=\"19:26\" Weekday=\"Monday\" Diary=\"Test\"/></MyDiary>";
             diaryList = new List<DiaryModel>();
 
             XmlDocument doc = new XmlDocument();
 
-            doc.Load(filepath);
+            doc.Load(Filepath);
 
             XmlNode xn = doc.SelectSingleNode("MyDiary");
             XmlNodeList xnl = xn.ChildNodes;
@@ -612,6 +628,8 @@ namespace MyDiary
             ChangePW();
         }
 
+        #region
+        /*
         public void ManageReg()
         {
             RegistryKey key = Registry.LocalMachine;
@@ -659,6 +677,25 @@ namespace MyDiary
             hkml.Close();
             return false;
         }
+        */
+        #endregion
+
+
+        private void Label_Chart_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Label_Chart.FontSize = 24;
+        }
+
+        private void Label_Chart_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Label_Chart.FontSize = 18;
+        }
+
+        private void Label_Chart_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ChartWindow cwindow = new ChartWindow(Filepath, R, G, B);
+            cwindow.Show();
+        }
 
         private void NewPwBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -668,7 +705,8 @@ namespace MyDiary
             }
         }
 
-
+        #region
+        /*
         public bool IsExistRegValue(string path, string keyvalue)
         {
             string[] subkeyNames;
@@ -689,6 +727,8 @@ namespace MyDiary
             hkml.Close();
             return false;
         }
+        */
+        #endregion
 
         public void ChangePW()
         {
@@ -705,12 +745,11 @@ namespace MyDiary
             else
             {
                 pword = NewPwBox.Password;
-                RegistryKey key = Registry.LocalMachine;
-                RegistryKey key_md = key.OpenSubKey("SOFTWARE\\MyDiary", true);
-                key_md.SetValue("PASSWORD", pword);
-                MessageBox.Show("修改成功");
+                System.Resources.ResXResourceWriter rw = new System.Resources.ResXResourceWriter(respath);
+                rw.AddResource("PASSWORD", pword);
+                rw.Close();
+                MessageBox.Show("修改成功!");
                 WinChange(2);
-                key_md.Close();
             }
         }
     }

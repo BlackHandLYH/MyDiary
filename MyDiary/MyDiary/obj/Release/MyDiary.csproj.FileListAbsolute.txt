@@ -30,3 +30,8 @@ D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.csproj.Gener
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.csproj.CoreCompileInputs.cache
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.exe
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.pdb
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\MyDiary.m.resources
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Release\m.resx
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Release\m.Designer.cs
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\ChartWindow.g.cs
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Release\ChartWindow.baml

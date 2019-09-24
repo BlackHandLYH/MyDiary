@@ -14,7 +14,6 @@ D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Debug\MyDiary.exe
 D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Debug\MyDiary.pdb
 D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Debug\Properties\Resources.resx
 D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Debug\Properties\Resources.Designer.cs
-D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Debug\MyDiary.csprojAssemblyReference.cache
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\bin\Debug\Properties\Resources.resx
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\bin\Debug\Properties\Resources.Designer.cs
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\bin\Debug\MyDiary.exe.config
@@ -32,3 +31,8 @@ D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Debug\MyDiary.csproj.Generat
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Debug\MyDiary.csproj.CoreCompileInputs.cache
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Debug\MyDiary.exe
 D:\littlethings\MyDiary\MyDiary\MyDiary\MyDiary\obj\Debug\MyDiary.pdb
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Debug\m.resx
+D:\littlethings\MyDiary\MyDiary\MyDiary\bin\Debug\m.Designer.cs
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Debug\ChartWindow.g.cs
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Debug\ChartWindow.baml
+D:\littlethings\MyDiary\MyDiary\MyDiary\obj\Debug\MyDiary.m.resources

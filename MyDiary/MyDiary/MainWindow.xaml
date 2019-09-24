@@ -25,15 +25,15 @@
             <Label x:Name="Label_change" Content="c" HorizontalAlignment="Left" Margin="614,88,-9,0" Foreground="White" Width="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="OCR A Extended" Padding="0" FontSize="18" Height="40" VerticalAlignment="Top" MouseEnter="Label_change_MouseEnter" MouseLeave="Label_change_MouseLeave" MouseLeftButtonDown="Label_change_MouseLeftButtonDown" AutomationProperties.HelpText="Change Color" ToolTip="Change Color" />
             <Label x:Name="Label_help" Content="?" HorizontalAlignment="Left" Margin="-14,88,0,0" VerticalAlignment="Top" Foreground="White" Width="40" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="OCR A Extended" Padding="0" FontSize="16" MouseEnter="Label_help_MouseEnter" MouseLeave="Label_help_MouseLeave" MouseLeftButtonDown="Label_help_MouseLeftButtonDown" AutomationProperties.HelpText="Help" ToolTip="Help" />
         </Grid>
-        <Grid x:Name="Grid_pw">
+        <Grid x:Name="Grid_pw" Visibility="Hidden">
             <PasswordBox x:Name="PwBox" HorizontalAlignment="Left" Height="34" Margin="280,46,0,0" VerticalAlignment="Top" Width="182" Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="{x:Null}" KeyDown="PwBox_KeyDown" VerticalContentAlignment="Center" />
             <Label x:Name="Label_password" Content="PassWord：" HorizontalAlignment="Left" Margin="152,39,0,0" VerticalAlignment="Top" Height="45" Width="121" FontSize="22" VerticalContentAlignment="Center" RenderTransformOrigin="5.922,0.678" HorizontalContentAlignment="Center" FontFamily="Microsoft YaHei UI Light" Foreground="White" Focusable="True" />
         </Grid>
-        <Grid x:Name="Grid_help">
+        <Grid x:Name="Grid_help" Visibility="Hidden">
             <Label x:Name="Label_helptext" Content="HelpText" HorizontalAlignment="Left" Margin="23,6,0,0" VerticalAlignment="Center" Height="105" Width="391" FontSize="16" VerticalContentAlignment="Center" RenderTransformOrigin="5.922,0.678" HorizontalContentAlignment="Center" FontFamily="Microsoft YaHei UI Light" Foreground="White" Focusable="True" />
             <Label x:Name="Label_changepw" Content="修改密码" HorizontalAlignment="Left" Margin="486,38,0,0" VerticalAlignment="Top" Height="46" Width="90" FontSize="16" VerticalContentAlignment="Center" FontFamily="Microsoft YaHei UI Light" Foreground="White" HorizontalContentAlignment="Center" MouseLeftButtonDown="Label_changepw_MouseLeftButtonDown" />
         </Grid>
-        <Grid x:Name="Grid_changepw">
+        <Grid x:Name="Grid_changepw" Visibility="Hidden">
             <Label x:Name="Label_oldpw" Content="原始密码" HorizontalAlignment="Left" Margin="120,16,0,0" VerticalAlignment="Top" Height="46" Width="90" FontSize="16" VerticalContentAlignment="Center" FontFamily="Microsoft YaHei UI Light" Foreground="White" HorizontalContentAlignment="Center"  />
             <Label x:Name="Label_newpw" Content="新密码" HorizontalAlignment="Left" Margin="120,60,0,0" VerticalAlignment="Top" Height="46" Width="90" FontSize="16" VerticalContentAlignment="Center" FontFamily="Microsoft YaHei UI Light" Foreground="White" HorizontalContentAlignment="Center"  />
             <PasswordBox x:Name="OldPwBox" HorizontalAlignment="Left" Height="34" Margin="280,24,0,0" VerticalAlignment="Top" Width="182" Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="{x:Null}" VerticalContentAlignment="Center" />
@@ -46,6 +46,7 @@
             <TextBox x:Name="diaryViewerBox" Height="40" Margin="30,62,0,0" TextWrapping="Wrap" Text="抽一条日记吧..." VerticalAlignment="Top" FontFamily="Microsoft YaHei Light" FontSize="22" VerticalContentAlignment="Center" GotFocus="DiaryBox_GotFocus" LostFocus="DiaryBox_LostFocus" Foreground="White" KeyDown="DiaryBox_KeyDown" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Left" Width="584" />
             <Label x:Name="Label_emotionviewer" Content="Happy" HorizontalAlignment="Left" Margin="522,10,0,0" VerticalAlignment="Top" Height="45" Width="90" FontSize="22" VerticalContentAlignment="Center" RenderTransformOrigin="5.922,0.678" HorizontalContentAlignment="Center" FontFamily="Microsoft YaHei UI Light" Foreground="White" Focusable="True" />
             <Label x:Name="Label_random" Content="R" HorizontalAlignment="Left" Margin="614,88,-9,-13" VerticalAlignment="Top" Foreground="White" Width="40" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="OCR A Extended" Padding="0" FontSize="16" AutomationProperties.HelpText="Open Diary" ToolTip="Open Diary" MouseEnter="Label_random_MouseEnter" MouseLeave="Label_random_MouseLeave" MouseLeftButtonDown="Label_random_MouseLeftButtonDown" />
+            <Label x:Name="Label_Chart" Content="S" HorizontalAlignment="Left" Margin="599,88,0,-13" VerticalAlignment="Top" Foreground="White" Width="40" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="OCR A Extended" Padding="0" FontSize="16" AutomationProperties.HelpText="Open Diary" ToolTip="Open Diary" MouseEnter="Label_Chart_MouseEnter" MouseLeave="Label_Chart_MouseLeave" MouseLeftButtonDown="Label_Chart_MouseLeftButtonDown" />
         </Grid>
     </Grid>
 </Window>
